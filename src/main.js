@@ -1,10 +1,10 @@
-"use strict";
+'use strict'
 
-const { app, BrowserWindow } = require("electron");
-const { devTools } = require("./devtools");
+const { app, BrowserWindow } = require('electron')
+const { devTools } = require('./devtools')
 
-if (process.env.NODE_ENV === "development") {
-  devTools();
+if (process.env.NODE_ENV === 'development') {
+  devTools()
 }
 
 app.whenReady().then(() => {
@@ -13,17 +13,17 @@ app.whenReady().then(() => {
     height: 800,
     maximizable: false,
     show: false,
-    title: "PlaztiPics",
-  });
+    title: 'PlaztiPics'
+  })
 
-  win.loadFile("renderer/index.html");
+  win.loadFile('renderer/index.html')
 
-  win.once("ready-to-show", () => {
-    win.show();
-  });
+  win.once('ready-to-show', () => {
+    win.show()
+  })
 
-  win.on("closed", () => {
-    win = null;
-    app.quit();
-  });
-});
+  win.on('closed', () => {
+    win = null
+    app.quit()
+  })
+})
