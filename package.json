@@ -4,7 +4,7 @@
   "description": "Aplicación de Electron para visualización de imágenes",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "cross-env NODE_ENV=development electron ."
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/williamayalah/PlatziPics#readme",
   "devDependencies": {
-    "electron": "^20.0.3"
+    "cross-env": "^7.0.3",
+    "electron": "^20.0.3",
+    "electron-reload": "^2.0.0-alpha.1"
   }
 }
