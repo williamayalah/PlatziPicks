@@ -2,9 +2,9 @@
   "name": "plaztipics",
   "version": "1.0.0",
   "description": "Aplicación de Electron para visualización de imágenes",
-  "main": "src/main.js",
+  "main": "main.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development electron ."
+    "start": "cross-env NODE_ENV=development electron src/main.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
     "cross-env": "^7.0.3",
     "electron": "^20.0.3",
     "electron-reload": "^2.0.0-alpha.1"
+  },
+  "dependencies": {
+    "electron-debug": "^3.2.0"
   }
 }

@@ -1,8 +1,13 @@
 "use strict";
 
 const { app, BrowserWindow } = require("electron");
+const { devTools } = require("./devtools");
 
-app.on("ready", () => {
+if (process.env.NODE_ENV === "development") {
+  devTools();
+}
+
+app.whenReady().then(() => {
   let win = new BrowserWindow({
     width: 600,
     height: 800,
@@ -11,7 +16,7 @@ app.on("ready", () => {
     title: "PlaztiPics",
   });
 
-  win.loadFile("src/renderer/index.html");
+  win.loadFile("renderer/index.html");
 
   win.once("ready-to-show", () => {
     win.show();
