@@ -2,7 +2,7 @@
   "name": "plaztipics",
   "version": "1.0.0",
   "description": "Aplicación de Electron para visualización de imágenes",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron ."
   },
