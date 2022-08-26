@@ -1,3 +1,4 @@
+"use strict";
 
 const { app, BrowserWindow } = require("electron");
 const { devTools } = require("./devtools");
@@ -14,9 +15,6 @@ app.whenReady().then(() => {
     maximizable: false,
     show: false,
     title: "PlaztiPics",
-    webPreferences: {
-      nodeIntegration: true,
-    },
   });
 
   win.loadFile("renderer/index.html");
