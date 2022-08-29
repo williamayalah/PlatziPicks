@@ -29,7 +29,7 @@ function searchImagesEvent() {
 
     for (let index = 0; index < thumbs.length; index++) {
       if (this.value.length > 0) {
-        electronAPI.fileName(thumbs[index].src).then((fileSrc) => {
+        window.electronAPI.fileName(thumbs[index].src).then((fileSrc) => {
           if (fileSrc.match(regexp)) {
             thumbs[index].parentNode.classList.remove("hidden");
           } else {
