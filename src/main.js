@@ -15,7 +15,7 @@ function createWindow() {
     height: 800,
     maximizable: false,
     show: false,
-    title: "PlaztiPics",
+    title: "PlatziPics",
     webPreferences: {
       preload: path.join(__dirname, "/renderer/preload.js"),
     },
@@ -39,21 +39,19 @@ function createWindow() {
 }
 
 function getFileName(event, fileSrc) {
-  let fileName = path.basename(fileSrc);
-
-  return fileName;
+  return path.basename(fileSrc);
 }
 
 app.whenReady().then(() => {
   createWindow();
-
-  ipcMain.handle("image:fileName", getFileName);
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
   });
+  
+  ipcMain.handle("image:fileName", getFileName);
 });
 
 app.on("window-all-closed", () => {
