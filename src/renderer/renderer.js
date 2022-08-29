@@ -13,10 +13,13 @@ function addImagesEvent() {
 }
 
 function changeImage(node) {
-  document.querySelector("li.selected").classList.remove("selected");
-  node.classList.add("selected");
-  document.getElementById("image-displayed").src =
-    node.querySelector("img").src;
+  if (node) {
+    document.querySelector("li.selected").classList.remove("selected");
+    node.classList.add("selected");
+    document.getElementById("image-displayed").src = node.querySelector("img").src;
+  } else {
+    document.getElementById("image-displayed").src = "";
+  }
 }
 
 function searchImagesEvent() {
@@ -28,21 +31,23 @@ function searchImagesEvent() {
     const thumbs = document.querySelectorAll("li.list-group-item img");
 
     if (this.value.length > 0) {
-      for (let index = 0; index < thumbs.length; index++) {
-        window.electronAPI.fileName(thumbs[index].src).then((fileSrc) => {
+      for (const thumb of thumbs) {
+        window.electronAPI.fileName(thumb.src).then((fileSrc) => {
           if (fileSrc.match(regexp)) {
-            thumbs[index].parentNode.classList.remove("hidden");
-            thumbs[index].parentNode.classList.add("first-image");
-            selectFirstImage()
+            thumb.parentNode.classList.remove("hidden");
+            thumb.parentNode.classList.add("first-image");
           } else {
-            thumbs[index].parentNode.classList.add("hidden");
-            thumbs[index].parentNode.classList.remove("first-image");
+            thumb.parentNode.classList.add("hidden");
+            thumb.parentNode.classList.remove("first-image");
           }
+          selectFirstImage();
         });
       }
     } else {
-      for (const thumb of thumbs){
-        thumb.parentElement.classList.remove('hidden')
+      const hiddenImages = document.querySelectorAll("li.hidden");
+      for (const image of hiddenImages) {
+        console.log(image);
+        image.classList.remove("hidden");
       }
     }
   });
