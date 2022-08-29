@@ -46,6 +46,5 @@ function searchImagesEvent() {
 
 function selectFirstImage() {
   const image = document.querySelector("li.first-image");
-  console.log(image)
   changeImage(image);
 }
