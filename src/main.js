@@ -9,13 +9,7 @@ if (process.env.NODE_ENV === "development") {
   devTools();
 }
 
-function getFileName(event, fileSrc) {
-  let fileName = path.basename(fileSrc);
-
-  return fileName;
-}
-
-app.whenReady().then(() => {
+function createWindow() {
   let win = new BrowserWindow({
     width: 1000,
     height: 800,
@@ -38,10 +32,32 @@ app.whenReady().then(() => {
   //   console.log("Position: ", position);
   // });
 
-  ipcMain.handle("image:fileName", getFileName);
-
   win.on("closed", () => {
     win = null;
     app.quit();
   });
+}
+
+function getFileName(event, fileSrc) {
+  let fileName = path.basename(fileSrc);
+
+  return fileName;
+}
+
+app.whenReady().then(() => {
+  createWindow();
+
+  ipcMain.handle("image:fileName", getFileName);
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });
