@@ -27,16 +27,25 @@ function searchImagesEvent() {
 
     const thumbs = document.querySelectorAll("li.list-group-item img");
 
-    for (let index = 0; index < thumbs.length; index++) {
-      if (this.value.length > 0) {
+    if (this.value.length > 0) {
+      for (let index = 0; index < thumbs.length; index++) {
         window.electronAPI.fileName(thumbs[index].src).then((fileSrc) => {
           if (fileSrc.match(regexp)) {
             thumbs[index].parentNode.classList.remove("hidden");
+            thumbs[index].parentNode.classList.add("first-image");
+            selectFirstImage()
           } else {
             thumbs[index].parentNode.classList.add("hidden");
+            thumbs[index].parentNode.classList.remove("first-image");
           }
         });
       }
     }
   });
+}
+
+function selectFirstImage() {
+  const image = document.querySelector("li.first-image");
+  console.log(image)
+  changeImage(image);
 }
