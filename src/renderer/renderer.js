@@ -40,6 +40,10 @@ function searchImagesEvent() {
           }
         });
       }
+    } else {
+      for (const thumb of thumbs){
+        thumb.parentElement.classList.remove('hidden')
+      }
     }
   });
 }
