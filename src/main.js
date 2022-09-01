@@ -1,7 +1,7 @@
 "use strict";
 
 const { app, BrowserWindow, ipcMain } = require("electron");
-const { devTools } = require("./devtools");
+const devTools = require("./devtools");
 const url = require("url");
 const path = require("path");
 
@@ -26,11 +26,6 @@ function createWindow() {
   win.once("ready-to-show", () => {
     win.show();
   });
-
-  // win.on("move", () => {
-  //   let position = win.getPosition();
-  //   console.log("Position: ", position);
-  // });
 
   win.on("closed", () => {
     win = null;
