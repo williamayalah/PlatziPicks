@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+  openDirectoryEvent();
   addImagesEvent();
   searchImagesEvent();
   selectEvent();
@@ -23,7 +24,7 @@ function searchImagesEvent() {
 
     if (this.value.length > 0) {
       for (const thumb of thumbs) {
-        window.electronAPI.fileName(thumb.src).then((fileSrc) => {
+        window.electronAPI.getFileName(thumb.src).then((fileSrc) => {
           if (fileSrc.match(regexp)) {
             thumb.parentNode.classList.remove("hidden");
             thumb.parentNode.classList.add("first-image");
@@ -47,7 +48,7 @@ function selectEvent() {
   const select = document.getElementById("filters");
 
   select.addEventListener("change", function () {
-    applyFilter(this.value, document.getElementById('image-displayed'))
+    applyFilter(this.value, document.getElementById("image-displayed"));
   });
 }
 
@@ -70,9 +71,17 @@ function selectFirstImage() {
 function applyFilter(filter, currentImage) {
   let imgObj = new Image();
   imgObj.src = currentImage.src;
-  
+
   filterous
     .importImage(imgObj, {})
     .applyInstaFilter(filter)
     .renderHtml(currentImage);
+}
+
+function openDirectoryEvent() {
+  const openDirectory = document.getElementById("open-directory");
+
+  openDirectory.addEventListener("click", function () {
+    window.electronAPI.openDirectory()
+  });
 }
