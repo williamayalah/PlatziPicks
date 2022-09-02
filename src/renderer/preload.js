@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld('electronAPI',{
-    fileName: (fileSrc) => ipcRenderer.invoke('image:fileName', fileSrc)
+    getFileName: (fileSrc) => ipcRenderer.invoke('channel:getFileName', fileSrc),
+    openDirectory: () => ipcRenderer.send('channel:openDirectory')
 });
