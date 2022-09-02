@@ -24,6 +24,8 @@
     "standard": "^17.0.0"
   },
   "dependencies": {
-    "electron-debug": "^3.2.0"
+    "electron-debug": "^3.2.0",
+    "filesize": "^9.0.11",
+    "is-image": "^3.1.0"
   }
 }
