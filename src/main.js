@@ -2,7 +2,6 @@
 
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const devTools = require("./devtools");
-const url = require("url");
 const path = require("path");
 
 let win;
